@@ -1,0 +1,73 @@
+<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+    <div class="enquiry-box wow fadeInRight">
+        <button routerLink="/" class="submitbtn btn">Back To Home Page </button>
+        
+        <form #loginForm="ngForm">
+              
+             <div class="from-group">
+                <label for="Name">What is Your Hobby</label>
+                <select class="form-control country-box" required #topic="ngModel" [class.is-invalid]="topic.invalid && topic.touched" class="form-control" id="enquiry" name="enquiry" [(ngModel)]="formData['product']">
+                   <option value="" class="form-control">Select Enquiry</option>
+                    <option *ngFor="let topic of topics" class="form-control">{{ topic }}</option>
+                </select>
+                   <small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please choose Your Hobby</small>
+             </div>
+             
+            <div class="from-group">
+                <label for="FullName">Full Name</label>
+                <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" id="name" name="name" [(ngModel)]="formData['name']" placeholder="Full Name">
+                  <small class="text-danger" [class.d-none]="name.valid || name.untouched"> Name is required</small>
+            </div>
+           
+            <div class="from-group">
+                <label for="EmailAddress">Email Address</label>
+            <input type="email" id="email" required #email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-z0-9]+\.[a-zA-Z0-9-.]+$" class="form-control" [class.is-invalid]="email.invalid && email.touched" name="email"  placeholder="Email" [(ngModel)]="formData['email']">
+            <div *ngIf="email.errors && (email.invalid && email.touched)">
+                <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
+             <small class="text-danger" *ngIf="email.errors.pattern">Email is invalid</small>
+            </div> 
+        </div>
+            
+            <div class="from-group">
+                <label for="Company Name">Favorite fruit</label>
+                <ng-container *ngFor="let item of fruits;let i = index;">
+                    <p>
+                        <input type="radio" id="test{{i}}" name="radio-group" (change)="select(item)">
+                        <label for="test{{i}}">{{item}} </label>
+                      </p>
+                </ng-container>
+          </div>
+
+          <div class="from-group">
+            <label for="List of task">List of task</label>
+            <div *ngFor="let item of list" style="margin: 10px;">
+                <input type="checkbox" [(ngModel)]="item.checked" name="list" style="width: unset;
+                margin: 10px 6px;
+                height: unset;
+                padding: unset;;">{{item.title}}
+              </div>
+          </div>
+
+           <div class="from-group">
+            <label for="Phone Number">Phone Number</label>
+            <input id="phone" required #phone="ngModel" pattern="^(?:(\+))?(?:[0-9]{0,3}[\s.\/-]?)?(?:(?:\((?=\d{3}\)))?(\d{3})(?:(?!\(\d{3})\))?[\s.\/-]?)?(?:(?:\((?=\d{3}\)))?(\d{3})(?:(?!\(\d{3})\))?[\s.\/-]?)?(?:(?:\((?=\d{4}\)))?(\d{4})(?:(?!\(\d{4})\))?[\s.\/-]?)?$" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" id="phone" name="phone" [(ngModel)]="formData['phoneNumber']" placeholder="Phone Number"
+                type="tel">
+             <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
+               <small class="text-danger" *ngIf="phone.errors.required"> Phone number is required</small>
+               <small class="text-danger" *ngIf="phone.errors.pattern">Invalid phone number</small>        
+             </div>   
+        </div> 
+           <div class="from-group">
+               
+            <label for="How can we help?">How can we help?</label>
+            <textarea type="text" required #help="ngModel" [class.is-invalid]="help.invalid && help.touched" class="form-control" rows="5" id="comment" [(ngModel)]="formData['queryData']" name="comment"
+                placeholder="e.g. John Smith :)"></textarea>
+                <small class="text-danger" [class.d-none]="help.valid || help.untouched">Comment is required</small>
+           </div>
+
+            <button type="submit" class="submitbtn btn" [disabled]="loginForm.form.invalid" (click)="onFormSubmit(loginForm)" value="submit">submit</button>
+                                                    
+                 
+        </form>
+    </div>
+</div>
