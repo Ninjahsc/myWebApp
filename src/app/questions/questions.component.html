@@ -5,7 +5,7 @@
         <form #loginForm="ngForm">
               
              <div class="from-group">
-                <label for="Name">What is Your Hobby</label>
+                <label for="Name">What is Your Hobby <span class="text-danger">*</span> </label>
                 <select class="form-control country-box" required #topic="ngModel" [class.is-invalid]="topic.invalid && topic.touched" class="form-control" id="enquiry" name="enquiry" [(ngModel)]="formData['product']">
                    <option value="" class="form-control">Select Enquiry</option>
                     <option *ngFor="let topic of topics" class="form-control">{{ topic }}</option>
@@ -14,13 +14,13 @@
              </div>
              
             <div class="from-group">
-                <label for="FullName">Full Name</label>
+                <label for="FullName">Full Name <span class="text-danger">*</span></label>
                 <input type="text" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" class="form-control" id="name" name="name" [(ngModel)]="formData['name']" placeholder="Full Name">
                   <small class="text-danger" [class.d-none]="name.valid || name.untouched"> Name is required</small>
             </div>
            
             <div class="from-group">
-                <label for="EmailAddress">Email Address</label>
+                <label for="EmailAddress">Email Address <span class="text-danger">*</span></label>
             <input type="email" id="email" required #email="ngModel" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-z0-9]+\.[a-zA-Z0-9-.]+$" class="form-control" [class.is-invalid]="email.invalid && email.touched" name="email"  placeholder="Email" [(ngModel)]="formData['email']">
             <div *ngIf="email.errors && (email.invalid && email.touched)">
                 <small class="text-danger" *ngIf="email.errors.required">Email is required</small>
@@ -49,7 +49,7 @@
           </div>
 
            <div class="from-group">
-            <label for="Phone Number">Phone Number</label>
+            <label for="Phone Number">Phone Number <span class="text-danger">*</span></label>
             <input id="phone" required #phone="ngModel" pattern="^(?:(\+))?(?:[0-9]{0,3}[\s.\/-]?)?(?:(?:\((?=\d{3}\)))?(\d{3})(?:(?!\(\d{3})\))?[\s.\/-]?)?(?:(?:\((?=\d{3}\)))?(\d{3})(?:(?!\(\d{3})\))?[\s.\/-]?)?(?:(?:\((?=\d{4}\)))?(\d{4})(?:(?!\(\d{4})\))?[\s.\/-]?)?$" [class.is-invalid]="phone.invalid && phone.touched" class="form-control" id="phone" name="phone" [(ngModel)]="formData['phoneNumber']" placeholder="Phone Number"
                 type="tel">
              <div *ngIf="phone.errors && (phone.invalid && phone.touched)">
@@ -59,7 +59,7 @@
         </div> 
            <div class="from-group">
                
-            <label for="How can we help?">How can we help?</label>
+            <label for="How can we help?">How can we help? <span class="text-danger">*</span></label>
             <textarea type="text" required #help="ngModel" [class.is-invalid]="help.invalid && help.touched" class="form-control" rows="5" id="comment" [(ngModel)]="formData['queryData']" name="comment"
                 placeholder="e.g. John Smith :)"></textarea>
                 <small class="text-danger" [class.d-none]="help.valid || help.untouched">Comment is required</small>
